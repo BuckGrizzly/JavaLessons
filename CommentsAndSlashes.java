@@ -1,3 +1,5 @@
+//Mike Jennison, Wednesday 23rd July, 2014
+//I was right about what the slashes signify
 public class CommentsAndSlashes
 {
 	public static void main( String[] args)
