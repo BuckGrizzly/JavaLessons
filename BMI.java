@@ -37,7 +37,7 @@ public class BMI
 // 		
 // 		System.out.println( "Your BMI is " + bmi);
 
-		//BONUS 2 VERSION
+		//BONUS 2 VERSION test
 
 		double bmi, height, weight, height2, weight2, heightFeet, heightInches;
 				
