@@ -4,7 +4,6 @@ public class TwentyQuestions
 {
 	public static void main( String[] args )
 	{
-	
 		Scanner keyboard = new Scanner(System.in);
 		String question1, question2;
 		

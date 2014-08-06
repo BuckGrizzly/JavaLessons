@@ -1,4 +1,3 @@
-import java.util.Random;
 import java.util.Scanner;
 
 public class AddingValuesInALoop
@@ -17,11 +16,17 @@ public class AddingValuesInALoop
 		{
 			System.out.print( "Number: ");
 			y = keyboard.nextInt();
-			System.out.println("The total so far is " + (x+y) );
+			if ( y == 0)
+			{
+				System.out.println( "\nThe total is " + x ); 
+				break;
+			}
+			x = x + y;
+			System.out.println("The total so far is " + x );
 		}
-		if ( y == 0 )
+		if ( x == 0 )
 		{
-			System.out.println( "\nThe total is "); 
+			System.out.println( "\nThe total is " + x ); 
 		}
 	
 	}
