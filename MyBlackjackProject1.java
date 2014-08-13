@@ -63,13 +63,13 @@ public class MyBlackjackProject1
 		if ( player_total == 21 )
 		{
 			System.out.println( "YOU'VE ONLY GONE AND GOT A BLACKJACK!!! YOU WIN!!" );
-            System.out.println( "YOU ALSO TAKE $" + ( (player_bet*3) / 2 ) + " FROM THAT SMUG DEALER." );
+        		System.out.println( "YOU ALSO TAKE $" + ( (player_bet*3) / 2 ) + " FROM THAT SMUG DEALER." );
 			System.exit(0); 
 		}
 		if ( player_total == 22 )
 		{
 			System.out.println( "YOU BUST!! DEALER WINS!! SAD FACES ALL ROUND :(" );
-       		System.out.println( "You also lose $" + player_bet + ". Talk about a kick in the teeth..." );
+       			System.out.println( "You also lose $" + player_bet + ". Talk about a kick in the teeth..." );
 			System.exit(0); 
 		}
 		
@@ -87,37 +87,37 @@ public class MyBlackjackProject1
 		//Scenario results from the player hitting
 		if (decision1.equalsIgnoreCase("hit"))
 		{
-	       while (player_total < 21 && decision1.equalsIgnoreCase("hit"))
-	       {
-	       		if (decision1.equalsIgnoreCase("hit"))
-	       		{
+	        	while (player_total < 21 && decision1.equalsIgnoreCase("hit"))
+	        	{
+	       			if (decision1.equalsIgnoreCase("hit"))
+	       			{
 					hit = 2 + r.nextInt(10);
-                	System.out.println( "You drew a " + hit + "." );
-           			Thread.sleep(500);
-                	player_total = player_total + hit;
-                	System.out.println("Your total is " + player_total + ".\n");
-                	if ( player_total == 21 )
-                	{
-                		player_final_total = player_final_total + player_total;
-                		System.out.println( "MONEY IN THE BAG! You Stay" );
+        		 		System.out.println( "You drew a " + hit + "." );
+           				Thread.sleep(500);
+                			player_total = player_total + hit;
+                			System.out.println("Your total is " + player_total + ".\n");
+                			if ( player_total == 21 )
+                			{
+               					player_final_total = player_final_total + player_total;
+                				System.out.println( "MONEY IN THE BAG! You Stay" );
  						break;               	
-                	}
-                	if ( player_total > 21 )
-                	{
-                		System.out.println( "The gamble didn't pay off, YOU'VE BUST SUKKA!\n" );
-       					System.out.println( "You also lose $" + player_bet + ". Talk about a kick in the teeth..." );
+                			}
+                			if ( player_total > 21 )
+                			{
+                				System.out.println( "The gamble didn't pay off, YOU'VE BUST SUKKA!\n" );
+    						System.out.println( "You also lose $" + player_bet + ". Talk about a kick in the teeth..." );
 						System.exit(0); 
-        	   	 	}
-                	System.out.print("Would you like to \"hit\" or \"stay\"? ");
-                	decision1 = keyboard.next();
-                	System.out.println();
-                }
-            }        
-        }
+        	   	 		}
+                			System.out.print("Would you like to \"hit\" or \"stay\"? ");
+                			decision1 = keyboard.next();
+                			System.out.println();
+        			 }
+            		}        
+        	}
         
         
-        //Player final total
-    	player_final_total = player_final_total + player_total;
+        	//Player final total
+    		player_final_total = player_final_total + player_total;
 		if ( decision1.equalsIgnoreCase("stay") )
 		{
 			System.out.println( "You stay with " + player_final_total + "." );
@@ -142,36 +142,36 @@ public class MyBlackjackProject1
 				{
 					System.out.println( "Dealer chooses to hit.\n" );
 	 				hit = 2 + r.nextInt(10);
-            		System.out.println( "Dealer draws a " + hit + ".");
-            		dealer_total = dealer_total + hit;
-            		System.out.println( "Dealer total is " + dealer_total + ".\n");
-            		Thread.sleep(1000);
-            		if ( dealer_total > 21 )
-            		{
-                		System.out.println( "Dealer is bust, YOU WIN!" );
-                		System.out.println( "YOU ALSO TAKE $" + ( (player_bet*3) / 2 ) + " FROM THE DEALER.\n" );
+            				System.out.println( "Dealer draws a " + hit + ".");
+            				dealer_total = dealer_total + hit;
+            				System.out.println( "Dealer total is " + dealer_total + ".\n");
+            				Thread.sleep(1000);
+            				if ( dealer_total > 21 )
+            				{
+                				System.out.println( "Dealer is bust, YOU WIN!" );
+                				System.out.println( "YOU ALSO TAKE $" + ( (player_bet*3) / 2 ) + " FROM THE DEALER.\n" );
 						System.exit(0); 
-            		}
-            		if ( dealer_total == 21 )
-            		{
-            			System.out.println( "Dealer has 21." );
-       	    		    dealer_final_total = dealer_final_total + dealer_total;
+            				}
+            				if ( dealer_total == 21 )
+            				{
+            					System.out.println( "Dealer has 21." );
+       	    					dealer_final_total = dealer_final_total + dealer_total;
 						System.out.println( "Dealer Stay's with " + dealer_final_total + ".\n");
-            			break;
-            		}
-            		if ( dealer_total <= 21 && dealer_total > player_final_total )
-            		{
-               			dealer_final_total = dealer_final_total + dealer_total;
+            					break;
+            				}
+            				if ( dealer_total <= 21 && dealer_total > player_final_total )
+            				{
+               					dealer_final_total = dealer_final_total + dealer_total;
 						System.out.println( "Dealer Stay's with " + dealer_final_total + ".\n");
-            		    break;
-            		}
-            	}	
+            					break;
+            				}
+            			}	
 			}
  		}
  		
  		
  		//Dealer final total
-    	dealer_final_total = dealer_final_total + dealer_total;
+    		dealer_final_total = dealer_final_total + dealer_total;
 		if ( dealer_final_total > player_final_total && dealer_final_total < 21 )
 		{
 			System.out.println( "Dealer stays with " + dealer_final_total + "." );
@@ -182,7 +182,7 @@ public class MyBlackjackProject1
 		if ( player_final_total > dealer_final_total )
 		{
 			System.out.println( "YOU WIN!");
-            System.out.println( "YOU ALSO TAKE $" + ( (player_bet*3) / 2 ) + " FROM THAT SMUG DEALER." );
+            		System.out.println( "YOU ALSO TAKE $" + ( (player_bet*3) / 2 ) + " FROM THAT SMUG DEALER." );
 		}
 		if ( dealer_final_total > player_final_total )
 		{
