@@ -1,21 +1,20 @@
-
 import java.util.Scanner;
 import java.util.Random;
 
 public class MyBlackjackProject2
 {
     /**
-     * Gets a random int from 2 - 12.
+     * Gets a random int from 0 - 51.
      * @return int the randomly generated number
      */
     public static int nextCard()
     {
         Random r = new Random();
-        return 2 + r.nextInt(10);
+        return 0 + r.nextInt(51);
     }
+
     /**
      * Player opts to Hit instead of Stay
-     *
      */
     public static boolean youHit(String hit)
     {
@@ -59,16 +58,27 @@ public class MyBlackjackProject2
 
     public static void main( String[] args ) throws InterruptedException
     {
+        //player cards
+        int[] deck = new int[52];
+        String[] suits = {"Spades", "Hearts", "Diamonds", "Clubs"};
+        String[] numCard = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
+        Card[] cards = new Card[52];
+
+        // Initialize cards
+        for (int i = 0; i < deck.length; i++) {
+            deck[i] = i;
+        }
+
+        // store the generated deck of cards in objects
+        for (int i = 0; i < 52; i++) {
+            String suit = suits[deck[i] / 13];
+            String num = numCard[deck[i] % 13];
+            Card card = new Card(num, suit);
+            cards[i] = card;
+        }
+
         Scanner keyboard = new Scanner(System.in);
 
-        String decision1;
-
-        int playerCard1 = nextCard();
-        int playerCard2 = nextCard();
-        int dealerCard1 = nextCard();
-        int dealerCard2 = nextCard();
-        int playerFinalTotal, dealerFinalTotal;
-        int hit = 0, playerBet = 0;
         int play;
 
         //Casino Graphic
@@ -92,13 +102,22 @@ public class MyBlackjackProject2
         System.out.println( "***********************************************************" );
 
 
-        System.out.print( "\nPrepare to be DOMINATED by Mike's Blackjack program! \n");
-        playerFinalTotal = 0;
-        dealerFinalTotal = 0;
-
         do
         {
-            System.out.print("Would you like to play Blackjack? Select 1 for \"Yes\" or 2 for \"No\"? ");
+            Card playerCard1 = cards[nextCard()];
+            Card playerCard2 = cards[nextCard()];
+            Card dealerCard1 = cards[nextCard()];
+            Card dealerCard2 = cards[nextCard()];
+            int playerFinalTotal, dealerFinalTotal;
+            int playerBet = 0;
+
+            String decision1;
+
+            System.out.print( "\nPrepare to be DOMINATED by Mike's Blackjack program! \n");
+            playerFinalTotal = 0;
+            dealerFinalTotal = 0;
+
+            System.out.print("\nWould you like to play Blackjack? Select 1 for \"Yes\" or 2 for \"No\"? ");
             play = keyboard.nextInt();
 
             if (play == 1)
@@ -110,6 +129,7 @@ public class MyBlackjackProject2
                 Thread.sleep(1000);
                 System.out.println("\nYou place a $" + playerBet + " bet.");
                 Thread.sleep(1000);
+                System.out.println("\nThe Dealer deals you two cards. They are: ");
             }
             else if ( play == 2 )
             {
@@ -117,172 +137,14 @@ public class MyBlackjackProject2
                 System.exit(0);
             }
 
-		//player cards
-		int[] deck = new int[52];
-    		String[] suits = {"Spades", "Hearts", "Diamonds", "Clubs"};
-    		String[] ranks = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
-
-	    // Initialize cards
-    	for (int i = 0; i < deck.length; i++) {
-      		deck[i] = i;
-    	}
-
-	    // Display the all the cards
-   		for (int i = 0; i < 2; i++) {
-			String suit = suits[deck[i] / 13];
-      		String rank = ranks[deck[i] % 13];
-      	//System.out.println( rank + " of " + suit);
-      	if ( rank.equals("10") )
-      	{
-    	   	System.out.println("************* ");
-      		System.out.println("* " + rank + "        *");
-      	}
-      	else
-      	{
-      		System.out.println("************* ");
-      		System.out.println("* " + rank + "         *");
-      	}
-      	if ( suit.equals("Spades"))
-      	{
-			System.out.println("*           * ");
-			System.out.println("*     *     * ");
-			System.out.println("*    ***    * ");
-			System.out.println("*   *****   * ");
-			System.out.println("*  *******  * ");
-			System.out.println("*   *****   * ");
-			System.out.println("*     *     * ");
-			System.out.println("*   *****   * ");
-			System.out.println("*           * ");
-      	}
-      	else if ( suit.equals("Hearts"))
-      	{
-			System.out.println("*           * ");
-			System.out.println("*  **   **  * ");
-			System.out.println("* **** **** * ");
-			System.out.println("* ********* * ");
-			System.out.println("*  *******  * ");
-			System.out.println("*   *****   * ");
-			System.out.println("*    ***    * ");
-			System.out.println("*     *     * ");
-			System.out.println("*           * ");
-      	}
-      	else if ( suit.equals("Diamonds"))
-      	{
-			System.out.println("*           * ");
-			System.out.println("*     *     * ");
-			System.out.println("*    ***    * ");
-			System.out.println("*  *******  * ");
-			System.out.println("* ********* * ");
-			System.out.println("*  *******  * ");
-			System.out.println("*    ***    * ");
-			System.out.println("*     *     * ");
-			System.out.println("*           * ");
-    	}
-      	else if ( suit.equals("Clubs"))
-      	{
-			System.out.println("*           * ");
-			System.out.println("*   *****   * ");
-			System.out.println("*   *****   * ");
-			System.out.println("* ********* * ");
-			System.out.println("* ********* * ");
-			System.out.println("*     *     * ");
-			System.out.println("*    ***    * ");
-			System.out.println("*  *******  * ");
-			System.out.println("*           * ");
-    	}
-    	if ( rank.equals("10") )
-    	{
-    		System.out.println("*        " + rank + " *");
-			System.out.println("************* ");
-    	}
-    	else
-    	{
-			System.out.println("*         " + rank + " *");
-			System.out.println("************* ");
-      	}
-    	}
+            playerCard1.printCard();
+            Thread.sleep(1000);
+            playerCard2.printCard();
+            Thread.sleep(1000);
 
 
-
-
-
-
-
-
-
-
-
-//             //Player's starting hand
-//             System.out.println( "\nThe first card you draw is a " + playerCard1 + ", the second card is a " + playerCard2 + ".");
-//             int pc1 = playerCard1;
-//             int pc2 = playerCard2;
-//             if ( pc1 < 10 && pc2 < 10)
-//             {
-//                 System.out.println("************* " + "\t************* ");
-//                 System.out.println("* " + pc1 + "         * " + "\t* " + pc2 + "         *");
-// 
-//                 System.out.println("*     *     * " + "\t*     *     * ");
-//                 System.out.println("*    ***    * " + "\t*    ***    * ");
-//                 System.out.println("*   *****   * " + "\t*   *****   * ");
-//                 System.out.println("*  *******  * " + "\t*  *******  * ");
-//                 System.out.println("*   *****   * " + "\t*   *****   * ");
-//                 System.out.println("*     *     * " + "\t*     *     * ");
-//                 System.out.println("*   *****   * " + "\t*   *****   * ");
-// 
-//                 System.out.println("*         " + pc1 + " *" + "\t*         " + pc2 + " *");
-//                 System.out.println("************* " + "\t************* ");
-//             }
-//             else if ( pc1 > 10 && pc2 < 10 )
-//             {
-//                 System.out.println("************* " + "\t************* ");
-//                 System.out.println("* " + pc1 + "        * " + "\t* " + pc2 + "         *");
-// 
-//                 System.out.println("*     *     * " + "\t*     *     * ");
-//                 System.out.println("*    ***    * " + "\t*    ***    * ");
-//                 System.out.println("*   *****   * " + "\t*   *****   * ");
-//                 System.out.println("*  *******  * " + "\t*  *******  * ");
-//                 System.out.println("*   *****   * " + "\t*   *****   * ");
-//                 System.out.println("*     *     * " + "\t*     *     * ");
-//                 System.out.println("*   *****   * " + "\t*   *****   * ");
-// 
-//                 System.out.println("*         " + pc1 + "*" + "\t*         " + pc2 + " *");
-//                 System.out.println("************* " + "\t************* ");
-//             }
-//             else if ( pc1 < 10 && pc2 > 10)
-//             {
-//                 System.out.println("************* " + "\t************* ");
-//                 System.out.println("* " + pc1 + "         * " + "\t* " + pc2 + "        *");
-// 
-//                 System.out.println("*     *     * " + "\t*     *     * ");
-//                 System.out.println("*    ***    * " + "\t*    ***    * ");
-//                 System.out.println("*   *****   * " + "\t*   *****   * ");
-//                 System.out.println("*  *******  * " + "\t*  *******  * ");
-//                 System.out.println("*   *****   * " + "\t*   *****   * ");
-//                 System.out.println("*     *     * " + "\t*     *     * ");
-//                 System.out.println("*   *****   * " + "\t*   *****   * ");
-// 
-//                 System.out.println("*         " + pc1 + " *" + "\t*         " + pc2 + "*");
-//                 System.out.println("************* " + "\t************* ");
-//             }
-//             else if ( pc1 > 10 && pc2 > 10)
-//             {
-//                 System.out.println("************* " + "\t************* ");
-//                 System.out.println("* " + pc1 + "        * " + "\t* " + pc2 + "        *");
-// 
-//                 System.out.println("*     *     * " + "\t*     *     * ");
-//                 System.out.println("*    ***    * " + "\t*    ***    * ");
-//                 System.out.println("*   *****   * " + "\t*   *****   * ");
-//                 System.out.println("*  *******  * " + "\t*  *******  * ");
-//                 System.out.println("*   *****   * " + "\t*   *****   * ");
-//                 System.out.println("*     *     * " + "\t*     *     * ");
-//                 System.out.println("*   *****   * " + "\t*   *****   * ");
-// 
-//                 System.out.println("*         " + pc1 + "*" + "\t*         " + pc2 + "*");
-//                 System.out.println("************* " + "\t************* ");
-//             }
-
-            int playerTotal = (playerCard1 + playerCard2);
-            System.out.println( "\nYou start off with " + playerTotal + ".\n");
+            int playerTotal = (playerCard1.getValue() + playerCard2.getValue());
+            System.out.println( "\nYour combined total from the first deal is " + playerTotal + ".\n");
 
             //Instant win on a blackjack right off the bat, or instant bust
             if ( playerTotal == 21 )
@@ -299,12 +161,15 @@ public class MyBlackjackProject2
             }
 
             //Dealer's partial hand
-            System.out.println( "The dealer flips over a card. It's a " + dealerCard1 + ". The other card remains hidden. ");
-            System.out.println( "The dealer smiles at you overconfidently. Game on! \n" );
+            System.out.println( "The Dealer flips over a card. It's a: " );
+            dealerCard1.printCard();
+            Thread.sleep(1000);
+            System.out.println("The other card remains hidden for now. ");
+            System.out.println( "The Dealer smiles at you with a look of overconfidence. Game on! \n" );
 
 
             //Hit or Stay
-            System.out.print( "Would you like to \"hit\" or \"stay\"? " );
+            System.out.print("Would you like to \"hit\" or \"stay\"? ");
             decision1 = keyboard.next();
 
 
@@ -315,11 +180,11 @@ public class MyBlackjackProject2
                 {
                     if (youHit(decision1))
                     {
-                        hit = nextCard();
-                        System.out.println( "You drew a " + hit + "." );
-                        Thread.sleep(500);
-                        playerTotal = playerTotal + hit;
-                        System.out.println("Your total is " + playerTotal + ".\n");
+                        Card playerHitCard = cards[nextCard()];
+                        playerHitCard.printCard();
+                        Thread.sleep(1000);
+                        playerTotal = playerTotal + playerHitCard.getValue();
+                        System.out.println("\nYour total is " + playerTotal + ".\n");
 
                         playerFinalTotal = checkForWin(playerTotal, true, playerBet, playerFinalTotal);
                         System.out.print("Would you like to \"hit\" or \"stay\"? ");
@@ -337,10 +202,10 @@ public class MyBlackjackProject2
 
 
             //Dealer's starting hand
-            System.out.println( "\nOkay, dealer's turn. ");
+            System.out.println( "\nOkay, Dealer's turn. ");
             Thread.sleep(1000);
-            System.out.println( "\nDealer's hidden card was " + dealerCard2 + "." );
-            int dealerTotal = (dealerCard1 + dealerCard2);
+            System.out.println( "\nDealer's hidden card was " + dealerCard2.getValue() + "." );
+            int dealerTotal = (dealerCard1.getValue() + dealerCard2.getValue());
             System.out.println( "Dealer total is " + dealerTotal + ".\n");
             Thread.sleep(1000);
 
@@ -353,9 +218,11 @@ public class MyBlackjackProject2
                     if ( dealerTotal <= playerFinalTotal )
                     {
                         System.out.println( "Dealer chooses to hit.\n" );
-                        hit = nextCard();
-                        System.out.println( "Dealer draws a " + hit + ".");
-                        dealerTotal = dealerTotal + hit;
+                        Card dealerHitCard = cards[nextCard()];
+                        dealerHitCard.printCard();
+                        Thread.sleep(1000);
+                        System.out.println( "Dealer draws a " + dealerHitCard.getValue() + ".");
+                        dealerTotal = dealerTotal + dealerHitCard.getValue();
                         System.out.println( "Dealer total is " + dealerTotal + ".\n");
                         Thread.sleep(1000);
                         dealerFinalTotal = checkForWin(dealerTotal, false, playerBet, dealerFinalTotal);
@@ -370,7 +237,7 @@ public class MyBlackjackProject2
             }
 
             //Dealer final total
-            dealerFinalTotal = playerFinalTotal + dealerTotal;
+            dealerFinalTotal = dealerFinalTotal + dealerTotal;
             if ( dealerFinalTotal > playerFinalTotal && dealerFinalTotal < 21 )
             {
                 System.out.println( "Dealer stays with " + dealerFinalTotal + "." );
@@ -396,4 +263,6 @@ public class MyBlackjackProject2
         } while ( play != 2 );
 
     }
+
+
 }
