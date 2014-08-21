@@ -204,7 +204,8 @@ public class MyBlackjackProject2
             //Dealer's starting hand
             System.out.println( "\nOkay, Dealer's turn. ");
             Thread.sleep(1000);
-            System.out.println( "\nDealer's hidden card was " + dealerCard2.getValue() + "." );
+            System.out.println( "\nThe Dealer flips over thier hidden card. It was a "); // + dealerCard2.getValue() + "." );
+            dealerCard2.printCard();
             int dealerTotal = (dealerCard1.getValue() + dealerCard2.getValue());
             System.out.println( "Dealer total is " + dealerTotal + ".\n");
             Thread.sleep(1000);
