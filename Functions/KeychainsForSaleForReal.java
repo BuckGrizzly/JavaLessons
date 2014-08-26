@@ -7,15 +7,16 @@ public class KeychainsForSaleForReal
 		Scanner keyboard = new Scanner(System.in);
 		
 		int choice;
-		int number;
-		double price;
+		int number = 0;
+		int price;
+
+		price = 10;
 		
-		price = 10.00;
-		
+		System.out.println("\nYe Olde Keychain Shoppe");
+
 		
 		do
 		{
-		System.out.println("Ye Olde Keychain Shoppe");
 		System.out.println("\n1. Add Keychains to Order");
 		System.out.println("2. Remove Keychains from Order");
 		System.out.println("3. View Current Order");
@@ -23,63 +24,81 @@ public class KeychainsForSaleForReal
 		System.out.print("\nPlease enter your choice: ");
 		choice = keyboard.nextInt();
 	
-		System.out.print(j(choice));
+		System.out.print((choice));
 		
 			if ( choice == 1 )
 			{
-				add_keychains();
+				number = add_keychains( number );
 			}
-			
-			
+			else if ( choice == 2 )
+			{
+				number = remove_keychains( number );
+			}
+			else if ( choice == 3 )
+			{
+				view_order( number, price );
+			}
+			else if ( choice == 4 )
+			{
+				checkout(number, price);
+			}
 		
 		} while (choice != 4 );
 	}
-
-
-
-		
-	public static String j(int choice)
-	{
-		if ( choice == 1 )
 		
 		
-		
-			return "\nADD KEYCHAINS\n";
-		else if ( choice == 2 )
-			return "\nREMOVE KEYCHAINS\n";
-		else if ( choice == 3 )
-			return "\nVIEW ORDER\n";
-		else
-			return "\nCHECKOUT\n";
-		}
-		
-		
-		
-		add_keychains(int)
+		public static int add_keychains(int keychainNum)
 		{
-		return;
+			Scanner keyboard = new Scanner(System.in);
+			int keychainAdd;
+			System.out.print("You have " + keychainNum + " keychains. How many to add? ");
+			keychainAdd = keyboard.nextInt();
+			keychainNum += keychainAdd;
+			System.out.print("You now have " + keychainNum + "keychains.\n");
+		
+			return keychainNum;
 		}
 		
-		remove_keychains(int)
+		public static int remove_keychains(int keychainNum)
 		{
-		return;
-		}
-		
-		public static void view_order(int, int)
-		{
-		return;
-		}
-		
-		checkout(int, int)
-		{
-		return;
-		}
-		
-		
-		
+			Scanner keyboard = new Scanner(System.in);
+			int removeKeychainNum;
+			System.out.print("You have " + keychainNum + " keychains. How many to remove? ");
+			removeKeychainNum = keyboard.nextInt();
+			keychainNum -= removeKeychainNum;
+			System.out.print("You now have " + keychainNum + " keychains.\n");
 
+			
+			return keychainNum;
+		}
 		
-	}
+		public static void view_order(int keychainNum, int price)
+		{
+			int c;
+			c = keychainNum * price;
+			
+			System.out.println("You have " + keychainNum + " keychains.");
+			System.out.println("Keychain cost is $" + price + " each.");
+			System.out.println("Total cost is $ " + c + ".");
+		}
+		
+		public static void checkout(int keychainNum, int price)
+		{
+			Scanner keyboard = new Scanner(System.in);
+			int c;
+			c = keychainNum * price;
+			String name;
+			System.out.print("What is your name? ");
+			name = keyboard.next();
+			System.out.println("You have " + keychainNum + " keychains.");
+			System.out.println("Keychain cost is $" + price + " each.");
+			System.out.println("Total cost is $" + c + " each.");
+			System.out.print("Thanks for your order, " + name + "." );
+
+		}
+		
+		
+	
 	
 	
 }

@@ -30,22 +30,21 @@ public class WeekdayCalculator
 
 		// put a function call for weekday() here
 		
-		System.out.println("You were born on " + weekdayName + "," + monthName + dd + yyyy );
+		System.out.println("You were born on " + weekday(mm, dd, yyyy));
 	}
 
 
 	public static String weekday( int mm, int dd, int yyyy )
 	{
-		int yy, total;
+		int yy, total = 0;
 		String date = "";
 
 		// bunch of calculations go here
 		yy = yyyy - 1900;
 		total = (yy / 4) + yy + dd + monthOffset(mm);
 
-		date = monthName(mm) + ", " + yyyy;
+		date = weekdayName(total%7) + "," + monthName(mm) + ", " + dd + "," + yyyy;
 		
-		int weekdayName = (total%7);
 
 		return date;
 	}

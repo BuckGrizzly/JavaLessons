@@ -8,7 +8,7 @@ public class NumberPuzzle1
 			for (int n = 10 ; n <= 60 ; n++ )
 			{
 			//total = i + n;
-				if ( i + n == 60 && i - n > 14) 
+				if ( i + n == 60 && (i - n) > 14) 
 				System.out.print ( i + "+" + n + "\t" );
 			}
 			System.out.print("");
