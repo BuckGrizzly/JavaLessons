@@ -8,8 +8,7 @@ public class BasicNestedLoops
 			{
 				System.out.print( "(" + a + "," + b + ")\t" ); 
 			}
+			System.out.println();
 		}
-
-
 	}
 }
